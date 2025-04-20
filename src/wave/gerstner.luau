@@ -1,5 +1,6 @@
 --!optimize 2
 --!native
+local fast_sum_buffer = require('./fast_sum_buffer')
 
 -- defs
 local GRAVITY = 9.81
@@ -9,7 +10,7 @@ export type wave = {
 	amplitude: number,
 	steepness: number,
 	length: number,
-	omega: number,
+	speed: number,
 	phase: number,
 	size: vector,
 	k: number,
@@ -28,9 +29,10 @@ local TAU = PI * 2
 local B = 4 / PI
 local C = -4 / (PI * PI)
 
-local function parabolic_sin(x: number)
-	x = (x % TAU) - math.pi
-	return B * x + C * x * math.abs(x)
+type unsigned_sin = number -- 0..2 instead of -1..1 - easier to transform into unsigned range
+local function parabolic_sin(x: number): unsigned_sin
+	x = (x % TAU) - PI
+	return 1 + x * (B + C * math.abs(x))
 end
 
 -- functions
@@ -40,7 +42,7 @@ local function wave(params: wave_params): wave
 	local length = params.length or 10
 
 	local k = 2 * math.pi / length
-	local omega = math.sqrt(GRAVITY * k) -- gravity-based dispersion
+	local speed = math.sqrt(GRAVITY * k) -- gravity-based dispersion
 	local steepness = params.steepness or k
 
 	return table.freeze {
@@ -50,7 +52,7 @@ local function wave(params: wave_params): wave
 		direction = direction,
 		length = length,
 		phase = params.phase or 0,
-		omega = omega,
+		speed = speed,
 		k = k,
 	}
 end
@@ -69,42 +71,33 @@ local function solve_wave(
 	time: number,
 	grid_size: vector,
 	grid_pos: vector,
-	out_sums: buffer?,
-	_cell_size: vector?
+	out_sums: fast_sum_buffer.fast_sum_buffer?,
+	_cell_scale: fast_sum_buffer.scaled_offset?
 ): buffer
-	debug.profilebegin('gerstner wave solve')
-	-- each cell consumes 3 bytes, but we write 4 bytes
-	-- so we need allocate the extra byte just to the last cell dont access out of bounds
 	local result = out_sums or buffer.create(grid_size.x * grid_size.z * 4)
-	local cell_size = _cell_size or vector.one
-	local x_factor = cell_size.x * 2 ^ 11 / 2
-	local y_factor = cell_size.y * 2 ^ 10 / 2
-	local z_factor = cell_size.z * 2 ^ 11 / 2
+	local unsigned_sin_factor = (_cell_scale or vector.one) * fast_sum_buffer.range.max / 2
 
 	local kx = wave.k * wave.direction.x
 	local kz = wave.k * wave.direction.z
-	local a = time * wave.omega + wave.phase
+	local a = time * wave.speed + wave.phase
 
 	local offset = 0
 	for z = grid_pos.z, (grid_pos.z + grid_size.z - 1) do
 		for x = grid_pos.x, (grid_pos.x + grid_size.x - 1) do
 			local theta = kz * z + kx * x - a
 
-			type unsigned_sin = number -- 0..2 instead of -1..1 - easier to transform into unsigned range
-			local sin_theta: unsigned_sin = parabolic_sin(theta) + 1
-			local cos_theta: unsigned_sin = parabolic_sin(theta + math.pi / 2) + 1
+			local sin_theta = parabolic_sin(theta)
+			local cos_theta = parabolic_sin(theta + math.pi / 2)
 
-			-- packing them into a single 32-bit integer consumes less memory
-			-- and allows us to fastly add them with another waves
-			local cell_pack = math.floor(cos_theta * x_factor)
-				+ 2 ^ 11 * math.floor(sin_theta * y_factor)
-				+ 2 ^ 21 * math.floor(cos_theta * z_factor)
-
-			buffer.writeu32(result, offset, buffer.readu32(result, offset) + cell_pack)
+			local scaled_offset = vector.create(
+				math.floor(cos_theta * unsigned_sin_factor.x),
+				math.floor(sin_theta * unsigned_sin_factor.y),
+				math.floor(cos_theta * unsigned_sin_factor.z)
+			)
+			fast_sum_buffer.add_cell(result, offset, scaled_offset)
 			offset += 4
 		end
 	end
-	debug.profileend()
 	return result
 end
 

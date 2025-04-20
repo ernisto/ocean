@@ -10,7 +10,7 @@
 			"$path": "places/chat.project.json"
 		},
 		"Players": {
-			"$path": "places/chat.project.json"
+			"$path": "places/players.project.json"
 		},
 		"ReplicatedStorage": {
 			"assets": {

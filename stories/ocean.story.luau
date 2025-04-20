@@ -1,4 +1,3 @@
-local AssetService = game:GetService('AssetService')
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
 local ServerStorage = game:GetService('ServerStorage')
 
@@ -7,54 +6,34 @@ local story = require(ServerStorage.stories.story)
 
 local function setup(target, props)
 	local GRID_SIZE = props.grid_size
-	local mesh = AssetService:CreateEditableMesh()
+	local resolution = vector.create(GRID_SIZE, 0, GRID_SIZE)
 
-	-- Criar blocos
-	local gridVerts = {}
-	for y = 1, GRID_SIZE do
-		gridVerts[y] = {}
-		for x = 1, GRID_SIZE do
-			gridVerts[y][x] = mesh:AddVertex(Vector3.new(x, 0, y))
-		end
-	end
+	local m = ocean.mesh.create(resolution)
+	local spectrum = ocean.wave.spectrum.new {
+		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
+		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
+	}
 
-	-- Conexão dos triângulos
-	for y = 1, GRID_SIZE - 1 do
-		for x = 1, GRID_SIZE - 1 do
-			local v00 = gridVerts[y][x]
-			local v10 = gridVerts[y][x + 1]
-			local v01 = gridVerts[y + 1][x]
-			local v11 = gridVerts[y + 1][x + 1]
+	local vertices = m.vertices
+	local part = m.part
+	local mesh = m.mesh
 
-			-- Cada célula forma dois triângulos
-			mesh:AddTriangle(v00, v01, v10)
-			mesh:AddTriangle(v01, v11, v10)
-		end
-	end
-
-	-- Loop de simulação
+	local set_vertex_pos = mesh.SetPosition
 	local conn = game:GetService('RunService').RenderStepped:Connect(function()
-		local t = os.clock()
-		local iter = ocean.solve(t)
+		local time = os.clock()
+		local offsets = ocean.wave.spectrum.solve(spectrum, resolution, time)
 
-		for y = 1, GRID_SIZE do
-			for x = 1, GRID_SIZE do
-				local vertexId = gridVerts[y][x]
-				local px, py, pz = iter()
-				mesh:SetPosition(vertexId, Vector3.new(x + px, py, y + pz))
+		local index = 1
+		for z = 0, GRID_SIZE - 1 do
+			for x = 0, GRID_SIZE - 1 do
+				local vertex_id = vertices[index]
+				local offset = offsets[index]
+
+				set_vertex_pos(mesh, vertex_id, Vector3.new(x + offset.x, offset.y, z + offset.z))
+				index += 1
 			end
 		end
 	end)
-
-	local content = Content.fromObject(mesh)
-	local part = AssetService:CreateMeshPartAsync(content)
-	part.Parent = workspace
-	part.Color = Color3.new(0.1, 0.4, 1)
-	part.Reflectance = 0.10
-	part.Transparency = 0.30
-	part.Size = Vector3.new(155, 0.005, 155)
-	part.CFrame = CFrame.new(0, 20, 0)
-	part.Material = Enum.Material.Glass
 
 	return function()
 		conn:Disconnect()
@@ -62,4 +41,6 @@ local function setup(target, props)
 	end
 end
 
-return story.story({ grid_size = 50 }, setup)
+return story.story({
+	grid_size = 50,
+}, setup)

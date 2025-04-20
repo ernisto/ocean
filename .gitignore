@@ -1,0 +1,19 @@
+# local secrets
+.env
+
+# locally generated
+sourcemap.json
+dist
+.pesde
+
+# roblox
+*.rbxl
+*.rbxl.lock
+
+# packages
+node_modules
+luau_packages
+lune_packages
+roblox_packages
+roblox_server_packages
+

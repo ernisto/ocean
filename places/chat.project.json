@@ -1,0 +1,9 @@
+{
+    "name": "chat",
+    "tree": {
+        "$className": "TextChatService",
+        "$properties": {
+            "ChatVersion": "TextChatService"
+        }
+    }
+}

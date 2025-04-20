@@ -1,0 +1,126 @@
+name: Check
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches-ignore: [master, dev]
+  push:
+    branches-ignore: [master, dev]
+  workflow_call:
+    secrets:
+      TEST_RUNNER_OPEN_CLOUD_API_KEY:
+        required: true
+
+jobs:
+  check-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your Git repo
+        uses: actions/checkout@v2
+
+      - name: Check Format [Source code]
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.20.0
+          args: --config-path stylua.toml --check src
+
+      - name: Check Format [Story books]
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.20.0
+          args: --config-path stylua.toml --check stories
+
+      - name: Check Format [Unit tests]
+        uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.20.0
+          args: --config-path stylua.toml --check tests
+
+  lint-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your git repo
+        uses: actions/checkout@v2
+
+      - name: Setup pesde
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cache: true
+
+      - name: Install packages
+        run: pesde install
+        timeout-minutes: 1
+
+      - name: Download roblox definitions file
+        run: curl -L "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/refs/heads/main/scripts/globalTypes.d.luau" -o globalTypes.d.luau
+
+      - name: Generate sourcemap
+        run: rojo sourcemap dev.project.json -o sourcemap.json
+
+      - name: Lint unit tests
+        run: >
+          luau_lsp analyze
+          --sourcemap sourcemap.json
+          --base-luaurc .luaurc
+          --ignore **/node_modules/**
+          --ignore **/luau_packages/**
+          --ignore **/roblox_packages/**
+          --ignore **/roblox_server_packages/**
+          --defs globalTypes.d.luau
+          tests
+
+      - name: Lint story books
+        run: >
+          luau_lsp analyze
+          --sourcemap sourcemap.json
+          --base-luaurc .luaurc
+          --ignore **/node_modules/**
+          --ignore **/luau_packages/**
+          --ignore **/roblox_packages/**
+          --ignore **/roblox_server_packages/**
+          --defs globalTypes.d.luau
+          stories
+
+      - name: Lint source code
+        run: >
+          luau_lsp analyze
+          --sourcemap sourcemap.json
+          --base-luaurc .luaurc
+          --ignore **/node_modules/**
+          --ignore **/luau_packages/**
+          --ignore **/roblox_packages/**
+          --ignore **/roblox_server_packages/**
+          --defs globalTypes.d.luau
+          src
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your Git repo
+        uses: actions/checkout@v2
+
+      - name: Setup Pesde Tools
+        uses: lumin-org/setup-pesde@v0.4.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cache: true
+
+      - run: chmod +x scripts/dev-build.sh
+      - name: Build dev game
+        run: ./scripts/dev-build.sh
+        timeout-minutes: 1
+
+      - name: Run tests
+        run: python3 scripts/python/upload_and_run_tasks.py dist/rojo/game.rbxl tests/run.luau -o dist/tests.txt
+        env:
+          ROBLOX_API_KEY: ${{ secrets.TEST_RUNNER_OPEN_CLOUD_API_KEY }}
+          ROBLOX_UNIVERSE_ID: ${{ vars.TEST_RUNNER_UNIVERSE_ID }}
+          ROBLOX_PLACE_ID: ${{ vars.TEST_RUNNER_PLACE_ID }}

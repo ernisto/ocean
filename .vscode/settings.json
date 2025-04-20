@@ -1,0 +1,101 @@
+{
+    // editor
+    "editor.formatOnSave": true,
+
+    // explorer
+    "explorer.fileNesting.patterns": {
+        "*.js": "${capture}.*.js, ${capture}.*.ts, ${capture}.js, ${capture}.js.map",
+        "*.ts": "${capture}.*.js, ${capture}.*.ts, ${capture}.js",
+        "*.luau": "${capture}.*.lua, ${capture}.*.luau",
+        "*.lua": "${capture}.*.lua, ${capture}.*.luau",
+        "*.jsx": "${capture}.js",
+        "*.tsx": "${capture}.ts",
+        "tsconfig.json": "tsconfig.*.json",
+        "package.json": ".luaurc, *.toml, *.json, *.yml, *.yaml, *.lock, *.js",
+        "README.md": "*.md",
+        "init.cmd": "*.cmd",
+        "init.sh": "*.sh",
+        ".gitattributes": ".gitignore, *.md, LICENSE"
+    },
+
+    // files
+    "files.eol": "\n",
+    "files.readonlyInclude": {
+        "**/node_modules/**": true,
+        "node_modules/**": true,
+
+        "**/_Index/**": true,
+        "*Packages/**": true,
+
+        "**/.pesde/**": true,
+        "*_packages/**": true,
+        "pesde.lock": true,
+        ".pesde": true,
+
+        "package-lock.json": true,
+        "sourcemap.json": true,
+        "dist": true,
+    },
+    "files.exclude": {
+        ".vscode": true,
+        ".github": true,
+        ".husky": true,
+        ".pesde": true,
+        "pesde.lock": true,
+        "package-lock.json": true,
+        "sourcemap.json": true,
+        "roblox_server_packages": true,
+        "roblox_packages": true,
+        "lune_packages": true,
+        "luau_packages": true,
+        "node_modules": true,
+        "scripts": true,
+        "dist": true,
+        ".gitattributes": true,
+        ".gitignore": true,
+        ".luaurc": true,
+        "asphalt.toml": true,
+        "stylua.toml": true,
+        "pesde.toml": true,
+        "mantle.yml": true,
+        "tests": true,
+        "*.rbxl": true,
+        "*.rbxl.lock": true
+    },
+
+    // schemas
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
+    },
+
+    // luau lsp
+    "luau-lsp.platform.type": "roblox",
+    "luau-lsp.bytecode.vectorCtor": "new",
+    "luau-lsp.bytecode.vectorLib": "Vector3",
+    "luau-lsp.bytecode.vectorType": "Vector3",
+    "luau-lsp.completion.imports.requireStyle": "alwaysAbsolute",
+    "luau-lsp.types.robloxSecurityLevel": "LocalUserSecurity",
+    "luau-lsp.sourcemap.rojoProjectFile": "dev.project.json",
+    "luau-lsp.sourcemap.includeNonScripts": true,
+    "luau-lsp.fflags.enableNewSolver": false,
+    "luau-lsp.diagnostics.strictDatamodelTypes": true,
+    "luau-lsp.diagnostics.workspace": true,
+    "luau-lsp.ignoreGlobs": [
+        "**/node_modules/**",
+        "node_modules/**",
+        "**/_Index/**",
+        "**/.pesde/**",
+        "dist/**"
+    ],
+    "luau-lsp.completion.imports.ignoreGlobs": [
+        "**/node_modules/**",
+        "**/_Index/**",
+        "**/.pesde/**",
+        "benches/**",
+        "*.bench.luau",
+        "stories/**",
+        "*.story.luau",
+        "tests/**",
+        "*.spec.luau",
+    ],
+}

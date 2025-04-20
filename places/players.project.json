@@ -1,0 +1,9 @@
+{
+    "name": "players",
+    "tree": {
+        "$className": "Players",
+        "$properties": {
+            "CharacterAutoLoads": false
+        }
+    }
+}

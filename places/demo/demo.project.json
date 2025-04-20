@@ -1,0 +1,36 @@
+{
+	"name": "ocean",
+	"emitLegacyScripts": false,
+	"globIgnorePaths": [
+		"**/*.spec.lua",
+		"**/*.spec.luau",
+		"**/*.bench.lua",
+		"**/*.bench.luau",
+		"**/*.story.lua",
+		"**/*.story.luau"
+	],
+	"tree": {
+		"$className": "DataModel",
+		"Lighting": {
+			"$path": "../../places/lighting.project.json"
+		},
+		"TextChatService": {
+			"$path": "../../places/chat.project.json"
+		},
+		"Players": {
+			"$path": "../../places/players.project.json"
+		},
+		"ReplicatedStorage": {
+			"assets": {
+				"$path": "../../assets",
+				"$ignoreUnknownInstances": true
+			},
+			"packages": {
+				"$path": "../../roblox_packages"
+			},
+			"client": {
+				"$path": "client"
+			}
+		}
+	}
+}

@@ -1,0 +1,67 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "rm -rf dist node_modules luau_packages lune_packages roblox_packages roblox_server_packages",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^error: (.*)",
+                    "message": 1
+                }
+            }
+        },
+        {
+            "label": "format",
+            "type": "shell",
+            "command": "stylua src tests stories",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^error: (.*)",
+                    "message": 1
+                }
+            }
+        },
+        {
+            "label": "install:packages",
+            "type": "shell",
+            "command": "pesde install",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^error: (.*)",
+                    "message": 1
+                }
+            }
+        },
+        {
+            "label": "sourcemap watch",
+            "type": "shell",
+            "command": "rojo sourcemap dev.project.json -o sourcemap.json --include-non-scripts --watch",
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^error: (.*)",
+                    "message": 1
+                }
+            }
+        },
+        {
+            "label": "build:dev",
+            "type": "shell",
+            "dependsOn": "build:blink",
+            "command": "rojo build dev.project.json --output game.rbxl",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^error: (.*)",
+                    "message": 1
+                }
+            }
+        },
+    ]
+}

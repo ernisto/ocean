@@ -1,0 +1,36 @@
+{
+	"name": "ocean",
+	"emitLegacyScripts": false,
+	"tree": {
+		"$className": "DataModel",
+		"Lighting": {
+			"$path": "places/lighting.project.json"
+		},
+		"TextChatService": {
+			"$path": "places/chat.project.json"
+		},
+		"Players": {
+			"$path": "places/chat.project.json"
+		},
+		"ReplicatedStorage": {
+			"assets": {
+				"$path": "assets",
+				"$ignoreUnknownInstances": true
+			},
+			"packages": {
+				"$path": "roblox_packages",
+				"ocean": {
+					"$path": "src"
+				}
+			}
+		},
+		"ServerStorage": {
+			"stories": {
+				"$path": "stories"
+			},
+			"tests": {
+				"$path": "tests"
+			}
+		}
+	}
+}

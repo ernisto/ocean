@@ -1,0 +1,109 @@
+{
+    "name": "lighting",
+    "tree": {
+        "$className": "Lighting",
+        "$properties": {
+            "GlobalShadows": true,
+            "Ambient": [
+                0.415,
+                0.4,
+                0.553
+            ],
+            "Brightness": 2,
+            "ColorShift_Bottom": [
+                0,
+                0,
+                0
+            ],
+            "ColorShift_Top": [
+                0,
+                0,
+                0
+            ],
+            "EnvironmentDiffuseScale": 1,
+            "EnvironmentSpecularScale": 1,
+            "OutdoorAmbient": [
+                0.325,
+                0.38,
+                0.459
+            ],
+            "Technology": "Voxel"
+        },
+        "Sky": {
+            "$className": "Sky",
+            "$properties": {
+                "CelestialBodiesShown": true,
+                "MoonAngularSize": 11,
+                "MoonTextureId": "rbxasset://sky/moon.jpg",
+                "SkyboxBk": "rbxassetid://591058823",
+                "SkyboxDn": "rbxassetid://591059876",
+                "SkyboxFt": "rbxassetid://591058104",
+                "SkyboxLf": "rbxassetid://591057861",
+                "SkyboxRt": "rbxassetid://591057625",
+                "SkyboxUp": "rbxassetid://591059642",
+                "StarCount": 3000,
+                "SunAngularSize": 21,
+                "SunTextureId": "rbxasset://sky/sun.jpg"
+            }
+        },
+        "Atmosphere": {
+            "$className": "Atmosphere",
+            "$properties": {
+                "Density": 0.3,
+                "Offset": 0.25,
+                "Color": [
+                    0.78,
+                    0.78,
+                    0.78
+                ],
+                "Decay": [
+                    0.415,
+                    0.439,
+                    0.49
+                ],
+                "Glare": 0,
+                "Haze": 0
+            }
+        },
+        "BloomEffect": {
+            "$className": "BloomEffect",
+            "$properties": {
+                "Intensity": 1,
+                "Threshold": 2,
+                "Size": 24
+            }
+        },
+        "ColorCorrectionEffect": {
+            "$className": "ColorCorrectionEffect",
+            "$properties": {
+                "Enabled": true,
+                "Brightness": 0,
+                "Contrast": 0.2,
+                "Saturation": 0.2,
+                "TintColor": [
+                    1,
+                    1,
+                    1
+                ]
+            }
+        },
+        "DepthOfFieldEffect": {
+            "$className": "DepthOfFieldEffect",
+            "$properties": {
+                "Enabled": true,
+                "FocusDistance": 0.05,
+                "FarIntensity": 0.1,
+                "InFocusRadius": 30,
+                "NearIntensity": 0.75
+            }
+        },
+        "SunRaysEffect": {
+            "$className": "SunRaysEffect",
+            "$properties": {
+                "Enabled": true,
+                "Intensity": 0.076,
+                "Spread": 0.646
+            }
+        }
+    }
+}

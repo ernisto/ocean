@@ -5,18 +5,28 @@ local ocean = require(ReplicatedStorage.packages.ocean)
 local story = require(ServerStorage.stories.story)
 
 local function setup(target, props)
-	local GRID_SIZE = props.grid_size
-	local resolution = vector.create(GRID_SIZE, 0, GRID_SIZE)
+	local RESOLUTION = props.resolution
+	if math.log(RESOLUTION, 2) % 1 ~= 0 then warn('solver is more stable with grid size of base 2 (2^n)') end
+
+	local resolution = vector.create(RESOLUTION, 0, RESOLUTION)
 
 	local m = ocean.mesh.create(resolution)
 	local spectrum = ocean.wave.spectrum.new {
-		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
-		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
+		ocean.wave.gerstner.new({ direction = vector.create(3, 0, 1), amplitude = 1 }),
+		-- ocean.wave.gerstner.random({ amplitude = 5, speed = 3 }),
 	}
 
 	local vertices = m.vertices
-	local part = m.part
 	local mesh = m.mesh
+
+	local part1 = m.part
+	part1.Size = Vector3.new(155, 0.005, 155)
+	part1.CFrame = CFrame.new(0, 20, 0)
+
+	local part2 = part1:Clone()
+	part2.Size = Vector3.new(155, 0.005, 155)
+	part2.CFrame = CFrame.new(155, 20, 0)
+	part2.Parent = workspace
 
 	local set_vertex_pos = mesh.SetPosition
 	local conn = game:GetService('RunService').RenderStepped:Connect(function()
@@ -24,8 +34,8 @@ local function setup(target, props)
 		local offsets = ocean.wave.spectrum.solve(spectrum, resolution, time)
 
 		local index = 1
-		for z = 0, GRID_SIZE - 1 do
-			for x = 0, GRID_SIZE - 1 do
+		for z = 0, RESOLUTION - 1 do
+			for x = 0, RESOLUTION - 1 do
 				local vertex_id = vertices[index]
 				local offset = offsets[index]
 
@@ -37,10 +47,11 @@ local function setup(target, props)
 
 	return function()
 		conn:Disconnect()
-		part:Destroy()
+		part1:Destroy()
+		part2:Destroy()
 	end
 end
 
 return story.story({
-	grid_size = 50,
+	resolution = 64,
 }, setup)

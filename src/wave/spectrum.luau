@@ -17,8 +17,8 @@ local function new(waves: { wave.wave }): spectrum
 	local period_size = vector.zero
 
 	for _, w in waves do
-		higher_offset += vector.max(vector.zero, w.size)
-		lower_offset += vector.min(vector.zero, w.size)
+		higher_offset += vector.max(vector.zero, w.offset)
+		lower_offset += vector.min(vector.zero, w.offset)
 	end
 	return table.freeze {
 		waves = table.freeze(table.clone(waves)),
@@ -33,7 +33,7 @@ end
 local function solve(spectrum: spectrum, resolution: vector, time: number)
 	local out_sums = buffer.create(resolution.x * resolution.z * 4)
 	for i, w in spectrum.waves do
-		wave.solve(w, time, resolution, vector.zero, out_sums, vector.abs(w.size) / spectrum.total_offset)
+		wave.solve(w, time, resolution, out_sums, vector.abs(w.offset) / spectrum.total_offset)
 	end
 
 	local points = {}

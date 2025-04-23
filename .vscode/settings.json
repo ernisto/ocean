@@ -69,6 +69,7 @@
     },
 
     // luau lsp
+    "stylua.targetReleaseVersion": "latest",
     "luau-lsp.platform.type": "roblox",
     "luau-lsp.bytecode.vectorCtor": "new",
     "luau-lsp.bytecode.vectorLib": "Vector3",

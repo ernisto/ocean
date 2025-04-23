@@ -29,9 +29,9 @@ sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
 
 [dev_dependencies]
 scripts = { name = "pesde/scripts_rojo", version = "^0.1.0", target = "lune" }
-luau_lsp = { name = "pesde/luau_lsp", version = "^1.39.0", target = "lune" }
-asphalt = { name = "pesde/asphalt", version = "^0.9.1", target = "lune" }
-stylua = { name = "pesde/stylua", version = "^2.0.2", target = "lune" }
+luau_lsp = { name = "pesde/luau_lsp", version = "^1.43.0", target = "lune" }
+asphalt = { name = "pesde/asphalt", version = "^1.0.0-pre.5", target = "lune" }
+stylua = { name = "pesde/stylua", version = "^2.1.0", target = "lune" }
 
 # modules
 uilabs = { name = "pepeeltoro41/ui_labs", version = "^2.3.7" }

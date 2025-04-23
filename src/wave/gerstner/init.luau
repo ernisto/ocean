@@ -1,6 +1,6 @@
 --!optimize 2
-local fast_sum_buffer = require(script.Parent.fast_sum_buffer)
-local lookup = require(script.lookup)
+local fast_sum_buffer = require(script.Parent.fast_sum_buffer) -- require('../fast_sum_buffer')
+local lookup = require(script.lookup) -- require('./lookup')
 local lookup_cell_bytes = lookup.cell_bytes
 local lookup_precision = lookup.precision
 

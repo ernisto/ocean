@@ -58,7 +58,6 @@
         "stylua.toml": true,
         "pesde.toml": true,
         "mantle.yml": true,
-        "tests": true,
         "*.rbxl": true,
         "*.rbxl.lock": true
     },

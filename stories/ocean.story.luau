@@ -1,5 +1,6 @@
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
 local ServerStorage = game:GetService('ServerStorage')
+local RunService = game:GetService('RunService')
 
 local ocean = require(ReplicatedStorage.packages.ocean)
 local story = require(ServerStorage.stories.story)
@@ -8,18 +9,20 @@ local function setup(target, props)
 	local GRID_SIZE = props.grid_size
 	local resolution = vector.create(GRID_SIZE, 0, GRID_SIZE)
 
+	local waves = {}
+	for i = 1, props.wave_amount do
+		table.insert(waves, ocean.wave.gerstner.random({ base_amplitude = 5 }))
+	end
+
 	local m = ocean.mesh.create(resolution)
-	local spectrum = ocean.wave.spectrum.new {
-		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
-		ocean.wave.gerstner.random({ base_amplitude = 5, speed = 3 }),
-	}
+	local spectrum = ocean.wave.spectrum.new(waves)
 
 	local vertices = m.vertices
 	local part = m.part
 	local mesh = m.mesh
 
 	local set_vertex_pos = mesh.SetPosition
-	local conn = game:GetService('RunService').RenderStepped:Connect(function()
+	local conn = RunService.RenderStepped:Connect(function()
 		local time = os.clock()
 		local offsets = ocean.wave.spectrum.solve(spectrum, resolution, time)
 
@@ -41,6 +44,4 @@ local function setup(target, props)
 	end
 end
 
-return story.story({
-	grid_size = 50,
-}, setup)
+return story.story({ grid_size = 64, wave_amount = 10 }, setup)

@@ -32,7 +32,7 @@ local function unpack_cell(packed_cell: packed_cell): scaled_offset
 	return vector.create(
 		bit32.extract(packed_cell, 0, 11),
 		bit32.extract(packed_cell, 11, 10),
-		bit32.extract(packed_cell, 21, 11)
+		bit32.extract(packed_cell, 11 + 10, 11)
 	)
 end
 local function pack_cell(cell: vector): packed_cell

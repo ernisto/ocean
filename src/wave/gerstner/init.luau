@@ -58,6 +58,19 @@ end
 
 -- methods
 @native
+local function solve_wave_point(wave: wave, time: number, grid_pos: vector, lookup_buffer: lookup.lookup): vector
+	local kx = wave.k * wave.direction.x / 4
+	local kz = wave.k * wave.direction.z / 4
+	local a = time * wave.speed + wave.phase
+
+	local theta = (kz * grid_pos.z + kx * grid_pos.x - a) / tau * lookup_precision
+	local lookup_offset = math.floor(theta) * lookup_cell_bytes % (lookup_cell_bytes * lookup_precision)
+	local scaled_offset = buffer.readu32(lookup_buffer, lookup_offset)
+
+	return fast_sum_buffer.scale_cell(scaled_offset)
+end
+
+@native
 local function solve_wave(
 	wave: wave,
 	time: number,
@@ -89,6 +102,7 @@ end
 -- module
 return table.freeze {
 	random = random_wave,
+	solve_point = solve_wave_point,
 	solve = solve_wave,
 	new = wave,
 }

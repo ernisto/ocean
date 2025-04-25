@@ -38,6 +38,13 @@ local function new(waves: { wave.wave }): spectrum
 end
 
 -- methods
+local function solve_point(spectrum: spectrum, point: vector, time: number)
+	local n = vector.zero
+	for w, lookup_buffer in spectrum.waves do
+		n += wave.solve_point(w, time, point, lookup_buffer)
+	end
+	return n
+end
 local function solve(spectrum: spectrum, resolution: vector, time: number)
 	local out_sums = buffer.create(resolution.x * resolution.z * 4)
 	for w, lookup_buffer in spectrum.waves do
@@ -61,8 +68,9 @@ end
 
 -- module
 return table.freeze {
-	new = new,
+	solve_point = solve_point,
 	solve = solve,
+	new = new,
 
 	wave = wave,
 }

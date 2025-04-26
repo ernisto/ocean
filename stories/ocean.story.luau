@@ -50,7 +50,8 @@ local function setup(target, props)
 				local vertex_id = vertices[index]
 				local offset = offsets[index]
 
-				set_vertex_pos(mesh, vertex_id, Vector3.new(x + offset.x, offset.y, z + offset.z))
+				local p = vector.create(x - 0.5, 0, z - 0.5) - vector.create(GRID_SIZE, 0, GRID_SIZE) / 2 + offset
+				set_vertex_pos(mesh, vertex_id, Vector3.new(p.x, p.y, p.z))
 				index += 1
 			end
 		end

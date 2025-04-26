@@ -16,8 +16,8 @@ local function create(size: vector): ocean_mesh
 	local vertices = {}
 	local faces = {}
 
-	for z = 0, size.z - 1 do
-		for x = 0, size.x - 1 do
+	for z = 0.5 + -size.z / 2, 0.5 + size.z / 2 - 1 do
+		for x = 0.5 + -size.x / 2, 0.5 + size.x / 2 - 1 do
 			table.insert(vertices, mesh:AddVertex(Vector3.new(x, 0, z)))
 		end
 	end
@@ -39,7 +39,6 @@ local function create(size: vector): ocean_mesh
 
 	local content = Content.fromObject(mesh)
 	local part = AssetService:CreateMeshPartAsync(content)
-	part.Size = Vector3.new(155, 0.005, 155)
 	part.CFrame = CFrame.new(0, 20, 0)
 	part.Parent = workspace
 

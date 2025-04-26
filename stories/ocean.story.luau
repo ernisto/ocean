@@ -19,9 +19,6 @@ local function setup(target, props)
 	local m = ocean.mesh.create(resolution)
 	local spectrum = ocean.wave.spectrum.new(waves)
 
-	local vertices = m.vertices
-	local mesh = m.mesh
-
 	local part = m.part
 	part.CFrame = CFrame.new(0, 20, 0)
 	part.Material = Enum.Material.Glass
@@ -41,22 +38,9 @@ local function setup(target, props)
 	part2.Position += Vector3.new(0, 0.1, 0)
 	part2.Parent = part
 
-	local set_vertex_pos = mesh.SetPosition
 	local conn = RunService.RenderStepped:Connect(function()
-		local time = os.clock()
-		local offsets = ocean.wave.spectrum.solve(spectrum, resolution, time)
-
-		local index = 1
-		for z = 0, GRID_SIZE - 1 do
-			for x = 0, GRID_SIZE - 1 do
-				local vertex_id = vertices[index]
-				local offset = offsets[index]
-
-				local p = vector.create(x - 0.5, 0, z - 0.5) - vector.create(GRID_SIZE, 0, GRID_SIZE) / 2 + offset
-				set_vertex_pos(mesh, vertex_id, Vector3.new(p.x, p.y, p.z))
-				index += 1
-			end
-		end
+		local offsets = ocean.wave.spectrum.solve(spectrum, resolution, os.clock())
+		ocean.mesh.apply_vertex_offsets(m, offsets)
 	end)
 
 	return function()

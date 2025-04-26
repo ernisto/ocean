@@ -8,6 +8,7 @@ export type ocean_mesh = {
 	part: MeshPart,
 	vertices: { vertex_id },
 	faces: { face },
+	size: vector,
 }
 
 -- functions
@@ -41,6 +42,7 @@ local function create(size: vector): ocean_mesh
 	local part = AssetService:CreateMeshPartAsync(content)
 
 	return table.freeze {
+		size = size,
 		part = part,
 		mesh = mesh,
 		faces = faces,
@@ -48,7 +50,28 @@ local function create(size: vector): ocean_mesh
 	}
 end
 
+-- methods
+local function apply_vertex_offsets(ocean_mesh: ocean_mesh, offsets: { vector })
+	local size = ocean_mesh.size
+	local mesh = ocean_mesh.mesh
+	local vertices = ocean_mesh.vertices
+	local set_vertex_pos = mesh.SetPosition
+
+	local index = 1
+	for z = 0, size.z - 1 do
+		for x = 0, size.x - 1 do
+			local vertex_id = vertices[index]
+			local offset = offsets[index]
+
+			local p = vector.create(x - 0.5, 0, z - 0.5) - vector.create(size.x, 0, size.z) / 2 + offset
+			set_vertex_pos(mesh, vertex_id, Vector3.new(p.x, p.y, p.z))
+			index += 1
+		end
+	end
+end
+
 -- module
 return table.freeze {
 	create = create,
+	apply_vertex_offsets = apply_vertex_offsets,
 }

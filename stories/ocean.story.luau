@@ -23,10 +23,12 @@ local function setup(target, props)
 	local mesh = m.mesh
 
 	local part = m.part
+	part.CFrame = CFrame.new(0, 20, 0)
 	part.Material = Enum.Material.Glass
 	part.Color = Color3.new(0.1, 0.4, 1)
 	part.Reflectance = 0
 	part.Transparency = 10
+	part.Parent = workspace
 
 	local highlight = Instance.new('Highlight', part)
 	highlight.OutlineTransparency = 1.00

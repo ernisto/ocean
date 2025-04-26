@@ -39,8 +39,6 @@ local function create(size: vector): ocean_mesh
 
 	local content = Content.fromObject(mesh)
 	local part = AssetService:CreateMeshPartAsync(content)
-	part.CFrame = CFrame.new(0, 20, 0)
-	part.Parent = workspace
 
 	return table.freeze {
 		part = part,

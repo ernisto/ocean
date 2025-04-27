@@ -1,0 +1,255 @@
+{
+    "ClassName": "Folder",
+    "Children": [
+        {
+            "Name": "water_1",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://92425960534074",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_2",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://73537800782864",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_3",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://94795432825070",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_4",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://133499615561022",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_5",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://135802165220413",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_6",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://130865971318940",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_7",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://107662052689391",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_8",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://137730012414686",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_9",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://136091429245794",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_10",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://122823683915363",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_11",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://98832029352409",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_12",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://131018777801993",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_13",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://117816247404053",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_14",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://86229673936252",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_15",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://127832284526456",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_16",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://131237125784967",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_17",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://110364951368589",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_18",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://97205726687498",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_19",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://101468385749054",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_20",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://137659327456582",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_21",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://91579847721215",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_22",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://123648718494955",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_23",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://94644897103233",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_24",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://129379098852185",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        },
+        {
+            "Name": "water_25",
+            "ClassName": "MaterialVariant",
+            "Properties": {
+                "BaseMaterial": "SmoothPlastic",
+                "NormalMap": "rbxassetid://107250351038095",
+                "RoughnessMap": "rbxassetid://94081821348068",
+                "StudsPerTile": 10
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+[creator]
+type = "user"
+id = 414709355
+
+[inputs.assets]
+path = "assets/**"
+output_path = "assets"
+output_name = "init.luau"
+bleed = true
+
+[codegen]
+strip_extensions = true
+typescript = false
+style = "nested"

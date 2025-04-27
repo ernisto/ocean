@@ -1,0 +1,105 @@
+version = 1
+
+[inputs.assets."assets/texture/water/normal_01.png"]
+hash = "868909fb96731fb93ebaa8a8f6a52cfe05b0d40b253bbb613c95cea441809681"
+asset_id = 92425960534074
+
+[inputs.assets."assets/texture/water/normal_02.png"]
+hash = "c6f32fada6064c43efcc5f7efd5d991716557b8f3e52cdae3f46a16c5f5fde07"
+asset_id = 73537800782864
+
+[inputs.assets."assets/texture/water/normal_03.png"]
+hash = "6fdab4a4db1b85f855f2242546b6f7092eee71a9f248f65219b1862888b063b0"
+asset_id = 94795432825070
+
+[inputs.assets."assets/texture/water/normal_04.png"]
+hash = "4d2e698f51bbfd0ff7bdadc28105a724b316afcd0923c3c2787abe643b02af71"
+asset_id = 133499615561022
+
+[inputs.assets."assets/texture/water/normal_05.png"]
+hash = "6f444615db00ae89a72491b4dd454b37566681bc291144819672c525cc613971"
+asset_id = 135802165220413
+
+[inputs.assets."assets/texture/water/normal_06.png"]
+hash = "2ecd92ce51cf2d131b50b61d0f0adc8383449af5dd4b5686f35926e016de365b"
+asset_id = 130865971318940
+
+[inputs.assets."assets/texture/water/normal_07.png"]
+hash = "9167eae841fb2d6295246073a4cfc4d9ebe36b08b75af634e9a4b27add885c7c"
+asset_id = 107662052689391
+
+[inputs.assets."assets/texture/water/normal_08.png"]
+hash = "6829d4a2763f4ee95d851a76ba08d5c8a606ef9de065891de66363b16bb5f7c3"
+asset_id = 137730012414686
+
+[inputs.assets."assets/texture/water/normal_09.png"]
+hash = "103ffe121780729dba4696013c1c8cd545ab044d6ec9bb6c5db0f779915bf17a"
+asset_id = 136091429245794
+
+[inputs.assets."assets/texture/water/normal_10.png"]
+hash = "a0654a62b939429f8a6f5618bb2713bf764c629d4ee5d97cdf3ac7a38df82b3c"
+asset_id = 122823683915363
+
+[inputs.assets."assets/texture/water/normal_11.png"]
+hash = "c60d73184bd049b6f5002b211684853156af5b3a5b213ae3d86cb97dd3bac389"
+asset_id = 98832029352409
+
+[inputs.assets."assets/texture/water/normal_12.png"]
+hash = "9b106ba199c5c6ef44f73bdf41012be14d16450b8f2807a44b3b1dc3a739fff3"
+asset_id = 131018777801993
+
+[inputs.assets."assets/texture/water/normal_13.png"]
+hash = "374f453f8b5bbbce65630ba8528ec943590f5b38bf71aa8a6fbc1e4578947c8d"
+asset_id = 117816247404053
+
+[inputs.assets."assets/texture/water/normal_14.png"]
+hash = "1266c3644537915cd6a35449eb8c5af6edec90d874cd939e92cefd8813647bb8"
+asset_id = 86229673936252
+
+[inputs.assets."assets/texture/water/normal_15.png"]
+hash = "8a000a1b5906ad315b53ea666b72aa795e7abe90b5ed28d082f95162b65428ec"
+asset_id = 127832284526456
+
+[inputs.assets."assets/texture/water/normal_16.png"]
+hash = "fffc3bc5fffc111c79fb7ad6de74278e719035f20eafca1670cdacb0f9e50165"
+asset_id = 131237125784967
+
+[inputs.assets."assets/texture/water/normal_17.png"]
+hash = "da78c04d30d7c100726d09dc8131da985d7fc099a029452ddb0fd2f5975547e2"
+asset_id = 110364951368589
+
+[inputs.assets."assets/texture/water/normal_18.png"]
+hash = "feb22424332147bf0cf6f80116f49b4b56ec39bc9114134dbbd2c814fafb426a"
+asset_id = 97205726687498
+
+[inputs.assets."assets/texture/water/normal_19.png"]
+hash = "1eda16335b86ceae40c823c3b6e789077b2be53e900dec476aed3f08b4c6bc88"
+asset_id = 101468385749054
+
+[inputs.assets."assets/texture/water/normal_20.png"]
+hash = "c89f01078378b7f2b4f5bd99970d3763d3638b70316682794531d9e0be50bf6e"
+asset_id = 137659327456582
+
+[inputs.assets."assets/texture/water/normal_21.png"]
+hash = "b0ea7029f850b1abb24c944670b0eabf62cad655214f2ff1283f38163ebd2eb0"
+asset_id = 91579847721215
+
+[inputs.assets."assets/texture/water/normal_22.png"]
+hash = "e0758a84cc9aa85d4daa6645908f1722b7878966e9b15c86b21f27e3c5fcd9b7"
+asset_id = 123648718494955
+
+[inputs.assets."assets/texture/water/normal_23.png"]
+hash = "8471f8ade6422cbcc3cdfcb6268ad8ebc8b341eb8f07bca10478ad10305b288c"
+asset_id = 94644897103233
+
+[inputs.assets."assets/texture/water/normal_24.png"]
+hash = "e8a6d653b70024938175cfd5b0fe0580e3b37f25c9f43f12255fc18b69c373d4"
+asset_id = 129379098852185
+
+[inputs.assets."assets/texture/water/normal_25.png"]
+hash = "0ee0ae03b3b3b5c0fd20762ac02928a782ac419686c775ba1f29586e5d0e0f41"
+asset_id = 107250351038095
+
+[inputs.assets."assets/texture/water/roughness.png"]
+hash = "a3439d64656410632c231b37b779b238442adf925d7add410126f99039078945"
+asset_id = 94081821348068

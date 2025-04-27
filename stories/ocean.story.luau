@@ -24,7 +24,7 @@ local function setup(target, props)
 
 	return function()
 		RunService:UnbindFromRenderStep('ocean')
-		setup.part1:Destroy()
+		setup.mesh.part:Destroy()
 	end
 end
 

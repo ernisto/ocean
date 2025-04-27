@@ -12,8 +12,6 @@ export type params = {
 }
 export type ocean = params & {
 	mesh: mesh.ocean_mesh,
-	part1: MeshPart,
-	part2: MeshPart,
 }
 
 -- functions
@@ -24,24 +22,12 @@ local function setup(params: params): ocean
 	local ocean_mesh = mesh.create(params.resolution)
 	ocean_mesh.part.Size = Vector3.new(size.x, size.y, size.z)
 
-	local part1 = ocean_mesh.part
-	part1.CFrame = CFrame.new(0, 20, 0)
-	part1.Material = Enum.Material.Glass
-	part1.Color = Color3.new(0.1, 0.4, 1)
-	part1.Reflectance = 0
-	part1.Transparency = 10
-	part1.Parent = workspace
-	part1.Size = Vector3.new(size.x, size.y, size.z)
-
-	local highlight = Instance.new('Highlight', part1)
-	highlight.OutlineTransparency = 1.00
-	highlight.FillTransparency = 1.00
-
-	local part2 = part1:Clone()
-	part2.Material = Enum.Material.SmoothPlastic
-	part2.Transparency = 0.50
-	part2.Position += Vector3.new(0, 0.1, 0)
-	part2.Parent = part1
+	local part = ocean_mesh.part
+	part.Material = Enum.Material.SmoothPlastic
+	part.Color = Color3.fromRGB(102, 125, 255)
+	part.Transparency = 0.50
+	part.Position += Vector3.new(0, 0.1, 0)
+	part.Parent = workspace
 
 	return table.freeze {
 		resolution = params.resolution,
@@ -49,9 +35,7 @@ local function setup(params: params): ocean
 		spectrum = params.spectrum,
 		mesh = ocean_mesh,
 		size = size,
-
-		part1 = part1,
-		part2 = part2,
+		part = part,
 	}
 end
 
@@ -68,13 +52,12 @@ local function update_geometry(ocean: ocean)
 	)
 	mesh.apply_vertex_offsets(ocean.mesh, offsets)
 
-	ocean.part1.Position = ocean_pos
-	ocean.part2.Position = ocean_pos + Vector3.new(0, 0.1, 0)
+	ocean.mesh.part.Position = ocean_pos
 end
 local function update_texture(ocean: ocean, material: material.animated)
 	local variant_names = material.variant_names
 	local name = variant_names[1 + os.clock() * material.fps % #variant_names // 1]
-	ocean.part2.MaterialVariant = name
+	ocean.mesh.part.MaterialVariant = name
 end
 
 local function update(ocean: ocean)

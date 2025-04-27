@@ -18,12 +18,12 @@ local function setup(target, props)
 		material = ocean.material.roblox.new(1 / 2),
 	})
 
-	local conn = RunService.PreRender:Connect(function()
+	RunService:BindToRenderStep('ocean', Enum.RenderPriority.Camera.Value + 1, function(delta_time)
 		ocean.ezsetup.update(setup)
 	end)
 
 	return function()
-		conn:Disconnect()
+		RunService:UnbindFromRenderStep('ocean')
 		setup.part1:Destroy()
 	end
 end

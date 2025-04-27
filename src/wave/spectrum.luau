@@ -45,17 +45,17 @@ local function solve_point(spectrum: spectrum, point: vector, time: number)
 	end
 	return n
 end
-local function solve(spectrum: spectrum, resolution: vector, time: number)
-	local out_sums = buffer.create(resolution.x * resolution.z * 4)
+local function solve(spectrum: spectrum, grid_size: vector, time: number, grid_pos: vector)
+	local out_sums = buffer.create(grid_size.x * grid_size.z * 4)
 	for w, lookup_buffer in spectrum.waves do
-		wave.solve(w, time, resolution, vector.zero, lookup_buffer, out_sums)
+		wave.solve(w, time, grid_size, grid_pos, lookup_buffer, out_sums)
 	end
 
 	local points = {}
 	local index = 0
 
-	for z = 1, resolution.z do
-		for x = 1, resolution.x do
+	for z = 1, grid_size.z do
+		for x = 1, grid_size.x do
 			local offset = fast_sum_buffer.read_scaled_offset(out_sums, index)
 			local absolute_offset = offset * spectrum.total_offset - spectrum.lower_offset
 

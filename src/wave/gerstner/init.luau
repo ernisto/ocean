@@ -59,14 +59,14 @@ end
 -- methods
 @native
 local function solve_wave_point(wave: wave, time: number, grid_pos: vector, lookup_buffer: lookup.lookup): vector
-	local kx = wave.k * wave.direction.x / 4
-	local kz = wave.k * wave.direction.z / 4
 	local a = time * wave.speed + wave.phase
+	local theta = wave.k * vector.dot(wave.direction, grid_pos) - a
 
-	local theta = (kz * grid_pos.z + kx * grid_pos.x - a) / tau * lookup_precision
-	local lookup_offset = math.floor(theta) * lookup_cell_bytes % (lookup_cell_bytes * lookup_precision)
+	local lookup_offset = math.floor(theta / tau * lookup_precision)
+		* lookup_cell_bytes
+		% (lookup_cell_bytes * lookup_precision)
+
 	local scaled_offset = buffer.readu32(lookup_buffer, lookup_offset)
-
 	return fast_sum_buffer.scale_cell(scaled_offset)
 end
 
@@ -82,16 +82,18 @@ local function solve_wave(
 	local result = out_sums or buffer.create(grid_size.x * grid_size.z * 4)
 	local offset = 0
 
-	local kx = wave.k * wave.direction.x / 4
-	local kz = wave.k * wave.direction.z / 4
+	local kx = wave.k * wave.direction.x
+	local kz = wave.k * wave.direction.z
 	local a = time * wave.speed + wave.phase
 
 	for z = grid_pos.z, (grid_pos.z + grid_size.z - 1) do
 		for x = grid_pos.x, (grid_pos.x + grid_size.x - 1) do
-			local theta = (kz * z + kx * x - a) / tau * lookup_precision
-			local lookup_offset = math.floor(theta) * lookup_cell_bytes % (lookup_cell_bytes * lookup_precision)
-			local scaled_offset = buffer.readu32(lookup_buffer, lookup_offset)
+			local theta = (kz * z + kx * x - a)
+			local lookup_offset = math.floor(theta / tau * lookup_precision)
+				* lookup_cell_bytes
+				% (lookup_cell_bytes * lookup_precision)
 
+			local scaled_offset = buffer.readu32(lookup_buffer, lookup_offset)
 			buffer.writeu32(result, offset, buffer.readu32(result, offset) + scaled_offset)
 			offset += 4
 		end

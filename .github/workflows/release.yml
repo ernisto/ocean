@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup pesde
-        uses: lumin-org/setup-pesde@v0.4.1
+        uses: ernisto/setup-pesde@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache: true

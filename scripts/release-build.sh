@@ -8,7 +8,7 @@ fi
 GAME_NAME="$1"
 
 # pesde
-pesde install --prod
+pesde install
 
 # rojo
 mkdir -p dist/rojo

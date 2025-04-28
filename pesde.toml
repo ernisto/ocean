@@ -19,7 +19,7 @@ includes = [
 environment = "roblox"
 build_files = ["lib"]
 lib = "lib/init.luau"
-# bin = "lib/cli.luau"
+# bin = "cli/init.luau"
 
 [engines]
 pesde = "^0.6.0"
@@ -40,9 +40,7 @@ scripts = { name = "pesde/scripts_rojo", version = "^0.1.0", target = "lune" }
 luau_lsp = { name = "pesde/luau_lsp", version = "^1.43.0", target = "lune" }
 asphalt = { name = "pesde/asphalt", version = "^1.0.0-pre.5", target = "lune" }
 stylua = { name = "pesde/stylua", version = "^2.1.0", target = "lune" }
+rojo = { name = "pesde/rojo", version = "^7.4.4", target = "lune" }
 
 # modules
 uilabs = { name = "pepeeltoro41/ui_labs", version = "^2.3.7" }
-
-[dependencies]
-rojo = { name = "pesde/rojo", version = "^7.4.4", target = "lune" }

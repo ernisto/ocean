@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 format = 1
 name = "ernisto/ocean"
-version = "0.1.0"
+version = "1.0.0-beta.1"
 target = "roblox"
 
 [graph."0x5eal/unzip@0.1.3 luau"]
@@ -139,8 +139,8 @@ option = [{ name = "lukadev_0/option", version = "^1.2.0", index = "https://gith
 result = [{ name = "lukadev_0/result", version = "^1.2.0", index = "https://github.com/pesde-pkg/index" }, "standard"]
 
 [graph."pesde/rojo@7.4.4 lune"]
-direct = ["rojo", { name = "pesde/rojo", version = "^7.4.4", index = "default", target = "lune" }, "standard"]
-resolved_ty = "standard"
+direct = ["rojo", { name = "pesde/rojo", version = "^7.4.4", index = "default", target = "lune" }, "dev"]
+resolved_ty = "dev"
 
 [graph."pesde/rojo@7.4.4 lune".dependencies]
 "lukadev_0/option@1.2.0 lune" = "option"

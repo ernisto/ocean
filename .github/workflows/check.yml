@@ -22,26 +22,12 @@ jobs:
       - name: Checkout your Git repo
         uses: actions/checkout@v2
 
-      - name: Check Format [Source code]
+      - name: Check Format
         uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: 2.1.0
-          args: --config-path stylua.toml --check lib
-
-      - name: Check Format [Story books]
-        uses: JohnnyMorganz/stylua-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: 0.20.0
-          args: --config-path stylua.toml --check stories
-
-      - name: Check Format [Unit tests]
-        uses: JohnnyMorganz/stylua-action@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: 0.20.0
-          args: --config-path stylua.toml --check tests
+          args: --config-path stylua.toml --check lib tests stories
 
   lint-code:
     runs-on: ubuntu-latest
@@ -65,41 +51,18 @@ jobs:
       - name: Generate sourcemap
         run: rojo sourcemap dev.project.json -o sourcemap.json
 
-      - name: Lint unit tests
+      - name: Lint
         run: >
           luau_lsp analyze
-          --sourcemap sourcemap.json
+          --platform roblox
           --base-luaurc .luaurc
+          --defs globalTypes.d.luau
+          --sourcemap sourcemap.json
           --ignore **/node_modules/**
           --ignore **/luau_packages/**
           --ignore **/roblox_packages/**
           --ignore **/roblox_server_packages/**
-          --defs globalTypes.d.luau
-          tests
-
-      - name: Lint story books
-        run: >
-          luau_lsp analyze
-          --sourcemap sourcemap.json
-          --base-luaurc .luaurc
-          --ignore **/node_modules/**
-          --ignore **/luau_packages/**
-          --ignore **/roblox_packages/**
-          --ignore **/roblox_server_packages/**
-          --defs globalTypes.d.luau
-          stories
-
-      - name: Lint source code
-        run: >
-          luau_lsp analyze
-          --sourcemap sourcemap.json
-          --base-luaurc .luaurc
-          --ignore **/node_modules/**
-          --ignore **/luau_packages/**
-          --ignore **/roblox_packages/**
-          --ignore **/roblox_server_packages/**
-          --defs globalTypes.d.luau
-          lib
+          lib tests stories
 
   unit-tests:
     runs-on: ubuntu-latest

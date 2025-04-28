@@ -11,15 +11,15 @@ includes = [
     "pesde.toml",
     "README.md",
     "LICENSE",
-    "init.luau",
+    "lib",
     "docs/**/*.md",
 ]
 
 [target]
 environment = "roblox"
-build_files = ["src"]
-lib = "src/init.luau"
-# bin = "src/cli.luau"
+build_files = ["lib"]
+lib = "lib/init.luau"
+# bin = "lib/cli.luau"
 
 [engines]
 pesde = "^0.6.0"

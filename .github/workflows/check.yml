@@ -27,7 +27,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: 2.1.0
-          args: --config-path stylua.toml --check src
+          args: --config-path stylua.toml --check lib
 
       - name: Check Format [Story books]
         uses: JohnnyMorganz/stylua-action@v4
@@ -99,7 +99,7 @@ jobs:
           --ignore **/roblox_packages/**
           --ignore **/roblox_server_packages/**
           --defs globalTypes.d.luau
-          src
+          lib
 
   unit-tests:
     runs-on: ubuntu-latest

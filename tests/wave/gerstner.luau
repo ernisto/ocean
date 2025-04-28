@@ -1,5 +1,5 @@
-local gerstner = require('../../src/wave/gerstner')
-local lookup = require('../../src/wave/gerstner/lookup')
+local gerstner = require('../../lib/wave/gerstner')
+local lookup = require('../../lib/wave/gerstner/lookup')
 
 local grid_size = vector.create(100, 0, 100)
 local w = gerstner.random {}

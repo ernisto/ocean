@@ -17,7 +17,7 @@
         {
             "label": "format",
             "type": "shell",
-            "command": "stylua src tests stories",
+            "command": "stylua lib tests stories",
             "problemMatcher": {
                 "pattern": {
                     "regexp": "^error: (.*)",

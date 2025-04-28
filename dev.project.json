@@ -16,7 +16,7 @@
 			"packages": {
 				"$path": "roblox_packages",
 				"ocean": {
-					"$path": "src",
+					"$path": "lib",
 					"assets": {
 						"$path": "assets",
 						"$ignoreUnknownInstances": true

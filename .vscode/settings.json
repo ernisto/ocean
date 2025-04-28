@@ -67,6 +67,7 @@
     "luau-lsp.ignoreGlobs": [
         "**/node_modules/**",
         "node_modules/**",
+        "lune_packages/**",
         "**/_Index/**",
         "**/.pesde/**",
         "dist/**"

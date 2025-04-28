@@ -13,14 +13,14 @@
 			"$path": "places/players.project.json"
 		},
 		"ReplicatedStorage": {
-			"assets": {
-				"$path": "assets",
-				"$ignoreUnknownInstances": true
-			},
 			"packages": {
 				"$path": "roblox_packages",
 				"ocean": {
-					"$path": "src"
+					"$path": "src",
+					"assets": {
+						"$path": "assets",
+						"$ignoreUnknownInstances": true
+					}
 				}
 			}
 		},
